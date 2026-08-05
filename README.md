@@ -1,4 +1,4 @@
-# Building Brave Teams — Psychological Safety, Trust, and Honest Communication
+# Building Brave Teams, Psychological Safety, Trust, and Honest Communication
 
 An interactive, single-page teaching site for a 2-hour immersive workshop.
 A **Learning on Demand** program: the facilitator projects it while
@@ -24,25 +24,24 @@ python3 -m http.server 8000
 
 The deck opens with the hook and learning objectives ("You can meet. Now
 say the hard thing."), then **the Chancellor's charge** (the institutional
-vision — "define the great university of the 21st century, and be it" —
-areas of focus, the reputation flywheel, and a mission-alignment builder),
+vision, "define the great university of the 21st century, and be it", areas of focus, the reputation flywheel, and a mission-alignment builder),
 then **Our Why** (Sinek's Golden Circle with a builder that renders your
 why/how/what as concentric rings), before the six teaching sections:
 
-1. What safety is (and isn't) — Edmondson's construct vs. the three myths
+1. What safety is (and isn't), Edmondson's construct vs. the three myths
    (niceness, low bar, consensus)
-2. Where your team stands — Clark's 4 Stages ladder + Edmondson's 7-item
+2. Where your team stands, Clark's 4 Stages ladder + Edmondson's 7-item
    diagnostic, self-scored live
-3. The evidence — nursing units (more errors reported), Tenerife/CRM,
+3. The evidence, nursing units (more errors reported), Tenerife/CRM,
    Google's Project Aristotle, and the working equation
-4. The Johari Window — disclosure and feedback as the two moves that grow
+4. The Johari Window, disclosure and feedback as the two moves that grow
    the Open quadrant (Luft & Ingham)
-5. Expand or contract — the observable behaviors that move safety, mapped
+5. Expand or contract, the observable behaviors that move safety, mapped
    to all four stages
-6. The candor rehearsal — SBI + Ask (adapted from CCL), drilled by ear
+6. The candor rehearsal, SBI + Ask (adapted from CCL), drilled by ear
 
 Ends with a scored recap mapped 1:1 to the objectives, the **Brave
-Commitment capstone** (start, stop, question, note, rung — 14 days, one
+Commitment capstone** (start, stop, question, note, rung, 14 days, one
 witness), a flip-card glossary, and a one-word closing ritual.
 `worksheet.html` mirrors the commitment card on paper (with the exit ticket
 on the back); `cheatsheet.html` is the take-home reference. A closing
@@ -54,21 +53,21 @@ talks, podcasts, and source documents to the rungs practiced in-session.
 | Slide | Tool | What learners do |
 |---|---|---|
 | Safety | **Safety, or something else?** | Diagnose five team snapshots: real safety, niceness in disguise, or a lowered bar |
-| The Ladder | **7-item diagnostic** | Rate Edmondson's actual instrument 1–5 and get a banded read + lowest-item nudge |
+| The Ladder | **7-item diagnostic** | Rate Edmondson's actual instrument 1 to 5 and get a banded read + lowest-item nudge |
 | The Ladder | **Quick check** | The comfort-zone trap: safety AND standards |
 | Evidence | **Quick check** | Why better nursing units reported MORE errors |
-| Johari | **Window builder** | Claim 5–6 of the 56 adjectives (Open), hold back up to 3 (Hidden) — rendered as a true 2×2 Johari window |
+| Johari | **Window builder** | Claim 5 to 6 of the 56 adjectives (Open), hold back up to 3 (Hidden), rendered as a true 2×2 Johari window |
 | Johari | **Sort the sticky** | Map returned feedback into Open / Blind / Hidden / Unknown |
 | Behaviors | **Expand or contract?** | Call eight real meeting moves, fast |
 | Candor | **Fix the feedback** | Name the broken SBI + Ask joint in five attempts |
 | Mission | **Alignment builder** | Locate your team's share of the vision: area of focus + rung + one concrete line |
-| Why | **Golden Circle builder** | Construct your own why/how/what — rendered as concentric rings |
+| Why | **Golden Circle builder** | Construct your own why/how/what, rendered as concentric rings |
 | Recap | **Scored quiz** | 6 questions mapped 1:1 to the objectives |
 | Capstone | **Brave Commitment card** | Build and copy a dated, witnessed commitment |
 
 ## Instructional design
 
-- **Kolb:** every 20–25 minute block completes the full cycle; no more
+- **Kolb:** every 20 to 25 minute block completes the full cycle; no more
   than ~8 minutes of instruction before application.
 - **Bloom (cognitive + affective):** objectives run Define → Diagnose →
   Explain → Practice/Disclose → Differentiate/Deliver → Commit.
@@ -83,7 +82,7 @@ talks, podcasts, and source documents to the rungs practiced in-session.
 ## The facilitator edition
 
 Generated at `/facilitator/` by `python3 tools/build-facilitator.py` from
-`facilitator/notes.json` — ATD-scripted rails (Say / Do / Ask with expected
+`facilitator/notes.json`, ATD-scripted rails (Say / Do / Ask with expected
 answers / Debrief / Transition), a briefing slide (prep, materials, room
 and wall setup, contingencies, tough questions, three copy-paste
 templates), Full 120 / Core 90 timing. Its QR encodes the learner URL.

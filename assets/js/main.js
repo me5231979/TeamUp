@@ -1,5 +1,5 @@
 /* =====================================================================
-   BUILDING BRAVE TEAMS — classroom deck interactions
+   BUILDING BRAVE TEAMS, classroom deck interactions
    (vanilla JS, no dependencies)
    ===================================================================== */
 (function () {
@@ -39,10 +39,11 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     revEls.forEach(function (el) { revObs.observe(el); });
     // elements already on screen at load can sit inside the observer's
-    // excluded margin — reveal them directly
+    // excluded margin, reveal them directly
     requestAnimationFrame(function () {
       revEls.forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.left < window.innerWidth && r.right > 0) {
           el.classList.add('in'); revObs.unobserve(el);
         }
       });
@@ -137,7 +138,7 @@
     ];
     var PS_BANDS = [
       { min: 28, label: 'Working safety',
-        text: 'Your team clears the bar on most items: risk is affordable here. The work now is protecting it — safety erodes one bad response to bad news at a time — and pairing it with equally high standards.' },
+        text: 'Your team clears the bar on most items: risk is affordable here. The work now is protecting it, safety erodes one bad response to bad news at a time, and pairing it with equally high standards.' },
       { min: 18, label: 'Mixed signals',
         text: 'Some risks are affordable on your team; others aren’t, and everyone has quietly mapped which is which. Your lowest item is the rung to build: it names the exact risk your team is still pricing too high.' },
       { min: 7, label: 'Running on silence',
@@ -170,7 +171,7 @@
       psOut.hidden = false;
       psOut.innerHTML = '<span class="tag">' + band.label + ' · ' + total + ' / 35</span>' +
         '<p style="margin:.75rem 0 0;color:rgba(255,255,255,.88)">' + band.text + '</p>' +
-        '<p class="why" style="margin:.75rem 0 0"><b>Your lowest item:</b> “' + PS_ITEMS[lowest].t + '” That item is your team’s work — bring it (not your total) to the table discussion.</p>';
+        '<p class="why" style="margin:.75rem 0 0"><b>Your lowest item:</b> “' + PS_ITEMS[lowest].t + '” That item is your team’s work, bring it (not your total) to the table discussion.</p>';
     };
     psWrap.addEventListener('click', function (e) {
       var b = e.target.closest('.braving__dot');
@@ -277,14 +278,14 @@
     failMsg: 'Close. The test: is interpersonal RISK affordable here? Comfort without candor is niceness; forgiveness without standards is a lowered bar. Safety makes the hard thing sayable, with the bar still high.',
     labels: ['Psychological safety', 'Niceness in disguise', 'Lowered standards'],
     items: [
-      { q: 'The team argues hard about the proposal in the meeting — pointed questions, open disagreement — then commits to the decision. Nobody’s standing suffers for having dissented.',
+      { q: 'The team argues hard about the proposal in the meeting, pointed questions, open disagreement, then commits to the decision. Nobody’s standing suffers for having dissented.',
         answer: 0, why: 'Safety: risk was taken, out loud, before the decision, and it cost no one. Conflict about ideas plus commitment afterward is the signature.' },
       { q: 'Everyone sees the flaw in the plan. Nobody mentions it, because the author worked so hard and it would be unkind to embarrass them.',
-        answer: 1, why: 'Niceness in disguise: comfort is being protected at the cost of candor. The plan ships flawed — and everyone learns the flaw was known.' },
-      { q: '"Mistakes are no big deal here." Deadlines slip, quality dips, and there’s no post-mortem — raising either would feel like breaking the vibe.',
-        answer: 2, why: 'Lowered standards: forgiveness without accountability. Edmondson’s target is both dials high — safe to err AND expected to learn from it.' },
+        answer: 1, why: 'Niceness in disguise: comfort is being protected at the cost of candor. The plan ships flawed, and everyone learns the flaw was known.' },
+      { q: '"Mistakes are no big deal here." Deadlines slip, quality dips, and there’s no post-mortem, raising either would feel like breaking the vibe.',
+        answer: 2, why: 'Lowered standards: forgiveness without accountability. Edmondson’s target is both dials high, safe to err AND expected to learn from it.' },
       { q: 'A new analyst tells the VP, in front of the whole room, "I don’t understand this model." The VP walks through it, and thanks them for asking.',
-        answer: 0, why: 'Safety, specifically Learner safety: looking ignorant was affordable, and the response — the part everyone was watching — made it more affordable next time.' },
+        answer: 0, why: 'Safety, specifically Learner safety: looking ignorant was affordable, and the response, the part everyone was watching, made it more affordable next time.' },
       { q: 'Team norm: feedback is positives-only, because criticism hurts morale. Reviews are glowing; the same problems recur every quarter.',
         answer: 1, why: 'Niceness in disguise: a rule against candor wearing safety’s name badge. Real safety makes critique survivable, not forbidden.' }
     ]
@@ -390,19 +391,19 @@
     progress: '#ssProgress', next: '#ssNext', result: '#ssResult',
     progressWord: 'Sticky', goodColor: 'var(--vu-gold-flat)',
     resultColor: 'rgba(255,255,255,.85)', passAt: 4,
-    passMsg: 'You can run the mapping. In the room, do it silently and privately — the sorting is where the self-awareness happens.',
+    passMsg: 'You can run the mapping. In the room, do it silently and privately, the sorting is where the self-awareness happens.',
     failMsg: 'Close. The rules: they wrote it and you’d claim it → Open. They wrote it, you wouldn’t have → Blind. You know it, you didn’t share it → Hidden. Nobody knows yet → Unknown.',
     labels: ['Open (Arena)', 'Blind spot', 'Hidden (Façade)', 'Unknown'],
     items: [
-      { q: 'A teammate’s sticky says "organized" — one of the five words Jordan chose for themselves.',
+      { q: 'A teammate’s sticky says "organized", one of the five words Jordan chose for themselves.',
         answer: 0, why: 'Open: known to Jordan, now confirmed known to others. Matches between your claim and their stickies are the Arena.' },
       { q: 'Two stickies say "witty." Jordan has never once thought of themselves as funny.',
-        answer: 1, why: 'Blind spot: others see it; Jordan doesn’t. Only feedback could have surfaced it — no amount of self-reflection finds the pane you can’t see into.' },
-      { q: 'Jordan is quietly "searching" — actively rethinking their career — but chose not to pick that word, and no sticky mentions it.',
-        answer: 2, why: 'Hidden: known to self, withheld from others. It stays Hidden until Jordan chooses disclosure — and that choice is always Jordan’s to make.' },
-      { q: 'A sticky says "tense." Jordan is startled — then remembers three meetings this month where their jaw ached afterward.',
+        answer: 1, why: 'Blind spot: others see it; Jordan doesn’t. Only feedback could have surfaced it, no amount of self-reflection finds the pane you can’t see into.' },
+      { q: 'Jordan is quietly "searching", actively rethinking their career, but chose not to pick that word, and no sticky mentions it.',
+        answer: 2, why: 'Hidden: known to self, withheld from others. It stays Hidden until Jordan chooses disclosure, and that choice is always Jordan’s to make.' },
+      { q: 'A sticky says "tense." Jordan is startled, then remembers three meetings this month where their jaw ached afterward.',
         answer: 1, why: 'Blind spot, being recognized in real time. The startle-then-recall reaction is exactly what Blind feedback feels like when it’s accurate.' },
-      { q: 'Six months later, in a genuine crisis, Jordan turns out to be a calm, decisive incident commander. Nobody — including Jordan — had ever seen it.',
+      { q: 'Six months later, in a genuine crisis, Jordan turns out to be a calm, decisive incident commander. Nobody, including Jordan, had ever seen it.',
         answer: 3, why: 'Unknown: known to no one until a new situation surfaced it. This pane shrinks through time and challenge, not through the exercise.' }
     ]
   });
@@ -413,26 +414,26 @@
     progress: '#exProgress', next: '#exNext', result: '#exResult',
     progressWord: 'Move', goodColor: 'var(--vu-oak)',
     resultColor: 'var(--ink-soft, #555)', passAt: 6,
-    passMsg: 'You see the transactions now. The next meeting you sit in will look different — watch for the contract moves that sound harmless.',
+    passMsg: 'You see the transactions now. The next meeting you sit in will look different, watch for the contract moves that sound harmless.',
     failMsg: 'Close. The test for every move: does it make interpersonal risk cheaper or more expensive for the people watching? The audience, not the target, is where safety is won or lost.',
     labels: ['Expands safety', 'Contracts safety'],
     items: [
       { q: 'The meeting opens with the leader inviting the newest person in the room, by name, to give their read first.',
-        answer: 0, why: 'Expands — Inclusion. Belonging is granted before performance, and the invitation tells everyone junior voices go first here, not last.' },
+        answer: 0, why: 'Expands, Inclusion. Belonging is granted before performance, and the invitation tells everyone junior voices go first here, not last.' },
       { q: '"As we all know…" before making a point.',
-        answer: 1, why: 'Contracts — Learner. Three words that make every question expensive: anyone who didn’t know now can’t ask without admitting they’re behind.' },
-      { q: 'The most senior person in the room says "I don’t know — what am I missing?" and then actually waits.',
-        answer: 0, why: 'Expands — Learner. Normalized fallibility from the top makes not-knowing affordable for everyone below. The waiting is the proof it was real.' },
+        answer: 1, why: 'Contracts, Learner. Three words that make every question expensive: anyone who didn’t know now can’t ask without admitting they’re behind.' },
+      { q: 'The most senior person in the room says "I don’t know, what am I missing?" and then actually waits.',
+        answer: 0, why: 'Expands, Learner. Normalized fallibility from the top makes not-knowing affordable for everyone below. The waiting is the proof it was real.' },
       { q: 'A visible eye-roll when someone asks a question that was "covered in the doc."',
-        answer: 1, why: 'Contracts — Learner. The question cost one person; the eye-roll taxed everyone watching. Next meeting has fewer questions and the same confusion.' },
+        answer: 1, why: 'Contracts, Learner. The question cost one person; the eye-roll taxed everyone watching. Next meeting has fewer questions and the same confusion.' },
       { q: 'Presenting the plan upward as "Maria’s framing, which held up when we pressure-tested it."',
-        answer: 0, why: 'Expands — Contributor. Credit traveled with the idea, publicly, upward. Contribution just became a good investment on this team.' },
+        answer: 0, why: 'Expands, Contributor. Credit traveled with the idea, publicly, upward. Contribution just became a good investment on this team.' },
       { q: 'Quietly redoing a teammate’s work overnight and presenting the fixed version without telling them.',
-        answer: 1, why: 'Contracts — Contributor. The message received: your work isn’t trusted and you won’t even hear about it. Ownership stops being offered.' },
-      { q: '"Push back on this — I mean it. Steel-man the case against before we commit."',
-        answer: 0, why: 'Expands — Challenger. Dissent is explicitly invited and structured. Paired with a non-punishing response, this is the top rung being built.' },
+        answer: 1, why: 'Contracts, Contributor. The message received: your work isn’t trusted and you won’t even hear about it. Ownership stops being offered.' },
+      { q: '"Push back on this, I mean it. Steel-man the case against before we commit."',
+        answer: 0, why: 'Expands, Challenger. Dissent is explicitly invited and structured. Paired with a non-punishing response, this is the top rung being built.' },
       { q: 'The debate ends the moment the highest-paid person states a preference; the room reorganizes around it.',
-        answer: 1, why: 'Contracts — Challenger. HiPPO decision-making: rank settled what evidence should have. Everyone logged that challenging costs more than it pays.' }
+        answer: 1, why: 'Contracts, Challenger. HiPPO decision-making: rank settled what evidence should have. Everyone logged that challenging costs more than it pays.' }
     ]
   });
 
@@ -447,15 +448,15 @@
     labels: ['No situation anchor', 'Judgment instead of behavior', 'No impact named', 'No ask at the end'],
     items: [
       { q: '"You’re always so dismissive in meetings."',
-        answer: 1, why: '"Dismissive" is a verdict, not a behavior — no camera ever recorded "dismissive." And "always" turns one moment into a character trial. Name the interruption, the phone, the turned back.' },
+        answer: 1, why: '"Dismissive" is a verdict, not a behavior, no camera ever recorded "dismissive." And "always" turns one moment into a character trial. Name the interruption, the phone, the turned back.' },
       { q: '"In yesterday’s review, you interrupted Priya twice while she presented the numbers." …and that’s the whole message.',
-        answer: 2, why: 'Situation and behavior are clean — but why does it matter? Without impact ("she didn’t speak again; I’m worried we lost her read"), it’s surveillance, not feedback.' },
+        answer: 2, why: 'Situation and behavior are clean, but why does it matter? Without impact ("she didn’t speak again; I’m worried we lost her read"), it’s surveillance, not feedback.' },
       { q: '"Sometimes, in general, people’s ideas kind of get cut off around here, you know?"',
-        answer: 0, why: 'No anchor: no meeting, no moment, no name — the receiver can’t locate a single thing to change. Vagueness feels safer to say and lands as noise.' },
+        answer: 0, why: 'No anchor: no meeting, no moment, no name, the receiver can’t locate a single thing to change. Vagueness feels safer to say and lands as noise.' },
       { q: '"In Tuesday’s standup, when you took the budget question offline, I left unsure whether a decision had been made, and I’ve been blocked since." …then the subject changes.',
-        answer: 3, why: 'Perfect S, B, and I — then the door closes. Without "can we talk about how to close those loops?", the receiver has been informed, not invited. The Ask is what makes it a conversation.' },
+        answer: 3, why: 'Perfect S, B, and I, then the door closes. Without "can we talk about how to close those loops?", the receiver has been informed, not invited. The Ask is what makes it a conversation.' },
       { q: '"You clearly don’t respect the team’s time."',
-        answer: 1, why: 'A motive verdict — "clearly" plus a mind-read. Nobody accepts a diagnosis of their own intent. The observable version: "the last three standups started 10+ minutes late, and…"' }
+        answer: 1, why: 'A motive verdict, "clearly" plus a mind-read. Nobody accepts a diagnosis of their own intent. The observable version: "the last three standups started 10+ minutes late, and…"' }
     ]
   });
 
@@ -606,10 +607,10 @@
       });
     });
     var ASK = {
-      missing: '“What am I missing?” — then count to ten before you speak again. The silence is the invitation.',
-      easier: '“What would make it easier to speak up here?” — and write down whatever comes back, visibly.',
-      notsaying: '“What are we not saying?” — ask it at the decision point, before the decision, not after.',
-      shutdown: '“Where did I shut a conversation down this week?” — the bravest of the four; thank whoever answers.'
+      missing: '“What am I missing?”, then count to ten before you speak again. The silence is the invitation.',
+      easier: '“What would make it easier to speak up here?”, and write down whatever comes back, visibly.',
+      notsaying: '“What are we not saying?”, ask it at the decision point, before the decision, not after.',
+      shutdown: '“Where did I shut a conversation down this week?”, the bravest of the four; thank whoever answers.'
     };
     var NOTE = {
       thanks: 'A thank-you for their candor: name the specific moment they said the hard thing, and what it made possible.',
@@ -617,10 +618,10 @@
       invite: 'An invitation to disagree: “I want your real read on [decision], especially where you think I’m wrong.”'
     };
     var STAGE = {
-      inclusion: 'Inclusion — belonging before performance. Your tell that it’s working: the newest voice speaks early, unprompted.',
-      learner: 'Learner — questions and mistakes made affordable. Your tell: someone says “I don’t know” and the room doesn’t flinch.',
-      contributor: 'Contributor — real work, credited. Your tell: ideas travel upward with their author’s name still attached.',
-      challenger: 'Challenger — dissent thanked, publicly. Your tell: the plan changes because someone below you pushed back.'
+      inclusion: 'Inclusion, belonging before performance. Your tell that it’s working: the newest voice speaks early, unprompted.',
+      learner: 'Learner: questions and mistakes made affordable. Your tell: someone says “I don’t know” and the room doesn’t flinch.',
+      contributor: 'Contributor, real work, credited. Your tell: ideas travel upward with their author’s name still attached.',
+      challenger: 'Challenger, dissent thanked, publicly. Your tell: the plan changes because someone below you pushed back.'
     };
     buildBtn.addEventListener('click', function () {
       if (!planReady()) return;
@@ -665,12 +666,12 @@
       { q: 'Psychological safety is best defined as…',
         opts: ['A team where everyone is nice and conflict is rare', 'The shared belief that the team is safe for interpersonal risk-taking', 'A management style that avoids giving hard feedback', 'Agreement to keep all discussions positive'],
         correct: 1, why: 'Edmondson’s construct: a shared belief, about risk, held by a team. Not niceness, not comfort, not consensus.' },
-      { q: 'Your team asks questions freely and does solid work, but nobody ever challenges how things are done — especially not upward. On Clark’s ladder, the ceiling is…',
+      { q: 'Your team asks questions freely and does solid work, but nobody ever challenges how things are done, especially not upward. On Clark’s ladder, the ceiling is…',
         opts: ['Inclusion', 'Learner', 'Contributor', 'Challenger'],
-        correct: 3, why: 'Learner and Contributor are working; the missing rung is Challenger — safe dissent about the status quo, in the room, before the decision.' },
+        correct: 3, why: 'Learner and Contributor are working; the missing rung is Challenger, safe dissent about the status quo, in the room, before the decision.' },
       { q: 'Edmondson’s higher-performing nursing units reported MORE medication errors because…',
         opts: ['They actually made more errors', 'They felt safe enough to report the errors they made', 'Reporting was mandatory only on those units', 'Their patients were sicker'],
-        correct: 1, why: 'The reporting rate differed, not the error rate. Safe teams surface problems while they’re small — which is why they perform better.' },
+        correct: 1, why: 'The reporting rate differed, not the error rate. Safe teams surface problems while they’re small, which is why they perform better.' },
       { q: 'In the Johari Window, feedback from teammates shrinks which pane?',
         opts: ['Hidden', 'Open', 'Blind spot', 'Unknown'],
         correct: 2, why: 'Feedback shrinks the Blind spot; disclosure shrinks Hidden. Those are the only two moves that grow the Open quadrant.' },
@@ -723,7 +724,7 @@
       panelEl.hidden = true;
       resultEl.hidden = false;
       var pct = Math.round((score / QUESTIONS.length) * 100);
-      var msg = pct >= 80 ? 'You have the constructs and the moves. Build the commitment card — that’s where this becomes real.' :
+      var msg = pct >= 80 ? 'You have the constructs and the moves. Build the commitment card, that’s where this becomes real.' :
                 pct >= 50 ? 'Solid. Revisit the sections you missed before your first brave conversation.' :
                             'Worth another pass through the deck before the capstone.';
       resultEl.innerHTML = '<span class="eyebrow">Your result</span>' +
@@ -766,12 +767,15 @@
 
   function goTo(i) {
     i = Math.max(0, Math.min(slides.length - 1, i));
-    slides[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    slides[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', inline: 'start', block: 'nearest' });
   }
+  var barTitle = $('#barTitle');
   function setActive(i) {
     current = i;
     dots.forEach(function (d, di) { d.setAttribute('aria-current', String(di === i)); });
     if (counter) counter.textContent = (i + 1) + ' / ' + slides.length;
+    if (barTitle) barTitle.textContent = slides[i].getAttribute('data-title') || '';
+    if (typeof checkHint === 'function') checkHint();
     $$('.nav__links a').forEach(function (a) {
       var href = a.getAttribute('href');
       a.setAttribute('aria-current', String(href === '#' + slides[i].id));
@@ -787,11 +791,52 @@
   }
   setActive(0);
 
-  // progress bar
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  }, { passive: true });
+  // progress bar follows the deck's horizontal position
+  var deckEl = $('.deck');
+  if (deckEl) {
+    deckEl.addEventListener('scroll', function () {
+      var w = deckEl.scrollWidth - deckEl.clientWidth;
+      if (bar) bar.style.width = (w > 0 ? (deckEl.scrollLeft / w) * 100 : 0) + '%';
+      nav.classList.toggle('scrolled', deckEl.scrollLeft > 40);
+    }, { passive: true });
+  }
+
+  // "scroll for more" indicator
+  var hint = $('#scrollHint');
+  function checkHint() {
+    if (!hint || !slides[current]) return;
+    var s = slides[current];
+    var need = s.scrollHeight - s.clientHeight > 56;
+    var atEnd = s.scrollTop + s.clientHeight >= s.scrollHeight - 24;
+    hint.classList.toggle('show', need && !atEnd);
+  }
+  if (hint) {
+    hint.addEventListener('click', function () {
+      var s = slides[current];
+      s.scrollBy({ top: s.clientHeight * 0.7, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    slides.forEach(function (s) { s.addEventListener('scroll', checkHint, { passive: true }); });
+    window.addEventListener('resize', checkHint);
+    setTimeout(checkHint, 400);
+  }
+
+  // in-page anchor links jump the horizontal deck
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+      var slide = target.closest ? (target.closest('.slide') || target) : target;
+      if (slides.indexOf(slide) > -1) {
+        e.preventDefault();
+        goTo(slides.indexOf(slide));
+      } else if (id === 'top') {
+        e.preventDefault();
+        goTo(0);
+      }
+    });
+  });
 
   // keyboard
   document.addEventListener('keydown', function (e) {
@@ -802,6 +847,28 @@
       e.preventDefault(); goTo(current - 1);
     } else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
     else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+
+  // wheel advances the deck when the current screen has nothing left to scroll
+  var wheelLock = 0;
+  window.addEventListener('wheel', function (e) {
+    var s = slides[current];
+    if (!s) return;
+    var now = Date.now();
+    if (now - wheelLock < 900) return;
+    var atBottom = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;
+    var atTop = s.scrollTop <= 4;
+    if (e.deltaY > 24 && atBottom) { wheelLock = now; goTo(current + 1); }
+    else if (e.deltaY < -24 && atTop && current > 0) { wheelLock = now; goTo(current - 1); }
+  }, { passive: true });
+
+  // every non-anchor link opens in a new tab
+  $$('a[href]').forEach(function (a) {
+    var href = a.getAttribute('href');
+    if (href && href.charAt(0) !== '#') {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
+    }
   });
 
   // deck bar buttons
